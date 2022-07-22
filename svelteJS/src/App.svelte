@@ -12,33 +12,30 @@
 
 <main class="bg-background-500">
 	<Header />
-	<Router {url}>
-		<Route path="diary/:id" component={Diary} />
-		<Route path="create" component={Create} />
-		<Route path="about" component={About} />
-		<Route path="/"><Home /></Route>
-	</Router>
+	<section class="content">
+		<Router {url}>
+			<Route path="diary/:id" component={Diary} />
+			<Route path="create" component={Create} />
+			<Route path="about" component={About} />
+			<Route path="/"><Home /></Route>
+		</Router>
+	</section>
 	<Footer />
 </main>
 
 <style>
 	main {
 		text-align: center;
-		padding: 1em;
-		max-width: 240px;
+		max-width: 640px;
 		margin: 0 auto;
 	}
-
+	.content {
+		min-height: calc(100vh - 120px);
+	}
 	h1 {
 		color: #ff3e00;
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
 	}
 </style>

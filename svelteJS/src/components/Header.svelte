@@ -1,13 +1,22 @@
 <script>
-  import { Router, Link } from "svelte-routing";
+  import { Hamburger } from "svelte-hamburgers";
+  import BrightnessContrast from "carbon-icons-svelte/lib/BrightnessContrast.svelte";
+  let open;
+  import Menu from "./Menu.svelte";
 </script>
 
-<header>
-  <nav>
-    <Router>
-      <Link to="/">Home</Link>
-      <Link to="about">About</Link>
-      <Link to="create">Create</Link>
-    </Router>
-  </nav>
+<header class="bg-primary-900 flex justify-between items-center">
+  <Hamburger bind:open --color="white" />
+  <img src="/logo.png" alt="logo" />
+  <BrightnessContrast class="mr-6 text-white-900" />
 </header>
+<Menu bind:open />
+
+<style>
+  header {
+    height: 60px;
+  }
+  img {
+    max-height: 100%;
+  }
+</style>
