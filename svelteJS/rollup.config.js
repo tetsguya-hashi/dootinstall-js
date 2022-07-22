@@ -52,8 +52,11 @@ export default {
 			whitelistPatterns: [], // Same as above, but list of regexes
 			tailwind: {
 				colors: {
-					primary: "#b027b0",
-					secondary: "#009688",
+					primary: "#C2DED1",
+					secondary: "#CDC2AE",
+					accent: "#354259",
+					background: "ECE5C7",
+					white: "#ffffff",
 					error: "#f44336",
 					success: "#4caf50",
 					alert: "#ff9800",
