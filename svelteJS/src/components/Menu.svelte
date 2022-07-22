@@ -1,8 +1,16 @@
 <script>
+  import { onDestroy } from "svelte";
   import { Router, Link } from "svelte-routing";
   import { fly, scale } from "svelte/transition";
   import { quadOut } from "svelte/easing";
-  import { signInWithGoogle } from "../helpers/firebase";
+  import { signInWithGoogle, googleSignOut } from "../helpers/firebase";
+  import { userId } from "../store";
+  let uid;
+
+  const unsbscribe = userId.subscribe((id) => {
+    uid = id;
+  });
+  onDestroy(() => unsbscribe);
 
   export let open;
 </script>
@@ -13,7 +21,11 @@
       <Link class="block" to="/">Home</Link>
       <Link class="block" to="about">About</Link>
       <Link class="block" to="create">Create</Link>
-      <Link class="block" to="#" on:click={signInWithGoogle}>ログイン</Link>
+      {#if !uid}
+        <Link class="block" to="#" on:click={signInWithGoogle}>ログイン</Link>
+      {:else}
+        <Link class="block" to="#" on:click={googleSignOut}>ログアウト</Link>
+      {/if}
     </Router>
 
     <div
