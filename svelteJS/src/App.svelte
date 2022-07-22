@@ -11,7 +11,7 @@
 	import "./helpers/firebase";
 </script>
 
-<main class="bg-background-500">
+<main class="bg-background-200">
 	<Header />
 	<section class="content">
 		<Router {url}>

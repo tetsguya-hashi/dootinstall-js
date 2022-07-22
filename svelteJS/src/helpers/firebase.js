@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { userId } from "../store";
 import Cookies from 'js-cookie';
+import { getFirestore } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,7 +20,7 @@ const firebaseConfig = {
 
 // Initialize Firebaseログアウト
 const app = initializeApp(firebaseConfig);
-
+export const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 export const signInWithGoogle = () => {
