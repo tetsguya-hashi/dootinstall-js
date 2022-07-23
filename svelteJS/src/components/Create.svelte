@@ -9,19 +9,17 @@
 
   let rate = 80;
   let body = "";
-  const submit = () => {
+  const submit = async () => {
     if (body.length < 3) {
       alert("日記の内容は１０文字以上にしてください。");
       return;
     }
-    const result = postDiary(uid, body, rate);
+    const result = await postDiary(uid, body, rate);
     if (!result) {
       alert("日記の追加が失敗しました。");
     } else {
       alert("日記が保存されました");
-      setInterval(() => {
-        document.location.href = "/";
-      }, 500);
+      document.location.href = "/";
     }
   };
 
