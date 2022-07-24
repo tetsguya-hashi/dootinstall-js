@@ -9,23 +9,36 @@
 
   let rate = 80;
   let body = "";
+  let image = "";
+  let preview = "";
   const submit = async () => {
     if (body.length < 3) {
       alert("日記の内容は１０文字以上にしてください。");
       return;
     }
-    const result = await postDiary(uid, body, rate);
+    const result = await postDiary(uid, body, rate, image);
     if (!result) {
       alert("日記の追加が失敗しました。");
     } else {
-      alert("日記が保存されました");
+      alert("日記が保存されました!");
       document.location.href = "/";
     }
+    // ここにfirestoreへPOSTする関数を呼び出す
   };
 
   onDestroy(() => {
     unsbscribe;
   });
+
+  const onFileSelect = (e) => {
+    let target = e.target.files[0];
+    image = target;
+    let reader = new FileReader();
+    reader.readAsDataURL(target);
+    reader.onload = (e) => {
+      preview = e.target.result;
+    };
+  };
 </script>
 
 <h3>日記を書こう</h3>
@@ -39,6 +52,22 @@
     textarea
     rows="5"
     outlined
+  />
+  {#if preview}
+    <img src={preview} alt="プレビュー" class="mb-6 mx-auto block" />
+  {/if}
+  <label
+    for="file-input"
+    class="bg-primary-900 text-white-900 px-4 py-3 rounded mb-6 inline-block"
+    >画像を選択</label
+  >
+  <input
+    type="file"
+    accept="image/*"
+    id="file-input"
+    class="hidden"
+    bind:this={image}
+    on:change={(e) => onFileSelect(e)}
   />
   <div class="py-2">
     <Button type="submit" class="text-white-900">日記を保存</Button>
