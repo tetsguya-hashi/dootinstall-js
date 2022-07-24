@@ -1,6 +1,7 @@
-import { collection, doc, addDoc, query, where, getDocs, orderBy, getDoc } from "firebase/firestore";
-import { db } from "./firebase";
+import { collection, doc, addDoc, query, where, getDocs, orderBy, getDoc, updateDoc } from "firebase/firestore";
+import { db, srorage } from "./firebase";
 import dayjs from "dayjs";
+import { async } from "@firebase/util";
 
 export const fetch = async (uid = '') => {
   //collectionで取って来たいdbのnameを入れる
@@ -48,4 +49,16 @@ export const getDiary = async (id = 'test') => {
     console.log('No such document!');
     return false;
   }
+}
+
+export const updateDiary = async (id = '', body = '', rate = 1, image = '') => {
+  const diaryRef = doc(db, "diaries", id);
+  if (!diaryRef) { return false; }
+  // Set the "capital" field of the city 'DC'
+  await updateDoc(diaryRef, {
+    body: body,
+    rate: rate,
+    image: ""
+  });
+  return true;
 }
