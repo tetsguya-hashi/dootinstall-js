@@ -5,6 +5,8 @@
   import { quadOut } from "svelte/easing";
   import { signInWithGoogle, googleSignOut } from "../helpers/firebase";
   import { userId } from "../store";
+  import { ProgressCircular, Button } from "smelte";
+
   let uid;
 
   const unsbscribe = userId.subscribe((id) => {

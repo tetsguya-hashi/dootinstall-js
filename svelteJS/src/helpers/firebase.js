@@ -33,6 +33,7 @@ export const signInWithGoogle = () => {
       const user = result.user;
       userId.set(result.user.uid);
       Cookies.set('uid', result.user.uid);
+      document.location.reload();
       // ...
     }).catch((error) => {
       // Handle Errors here.

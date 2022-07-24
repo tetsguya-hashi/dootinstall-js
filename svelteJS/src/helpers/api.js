@@ -1,8 +1,8 @@
-import { collection, addDoc, query, where, getDocs, orderBy } from "firebase/firestore";
+import { collection, doc, addDoc, query, where, getDocs, orderBy, getDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import dayjs from "dayjs";
 
-export const fetch = async (uid) => {
+export const fetch = async (uid = '') => {
   //collectionで取って来たいdbのnameを入れる
   //whereで条件を指定,今回は、uidが同じ物(webとdb)
   const q = query(collection(db, "diaries"), where("uid", "==", uid), orderBy('createAt', 'desc'));
@@ -35,4 +35,17 @@ export const postDiary = async (uid = '', body = '', rate = 1) => {
   console.log("Document written with ID: ", docRef.id);
   console.log(new Date());
   return docRef.id ? true : false;
+}
+
+export const getDiary = async (id = 'test') => {
+  const docRef = doc(db, 'diaries', id);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    console.log('Document data:', docSnap.data());
+    return docSnap.data();
+  } else {
+    console.log('No such document!');
+    return false;
+  }
 }
