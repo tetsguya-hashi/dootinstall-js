@@ -18,15 +18,19 @@
 </script>
 
 {#if open}
-  <nav class="bg-primary-900" on:click={() => (open = false)}>
+  <nav class="bg-primary-900 dark:bg-dark-900 " on:click={() => (open = false)}>
     <Router>
-      <Link class="block" to="/">Home</Link>
-      <Link class="block" to="about">About</Link>
-      <Link class="block" to="create">Create</Link>
+      <Link class="block mb-3" to="/">Home</Link>
+      <Link class="block mb-3" to="about">日記の効果とは？</Link>
       {#if !uid}
-        <Link class="block" to="#" on:click={signInWithGoogle}>ログイン</Link>
+        <Link class="block mb-3" to="#" on:click={signInWithGoogle}
+          >ログイン</Link
+        >
       {:else}
-        <Link class="block" to="#" on:click={googleSignOut}>ログアウト</Link>
+        <Link class="block mb-3" to="create">日記を書く</Link>
+        <Link class="block mb-3" to="#" on:click={googleSignOut}
+          >ログアウト</Link
+        >
       {/if}
     </Router>
 

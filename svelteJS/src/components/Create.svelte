@@ -42,7 +42,7 @@
 </script>
 
 <h3>日記を書こう</h3>
-<form on:submit|preventDefault={submit} action="" class="p-5">
+<form on:submit|preventDefault={submit} action="" class="p-5  ">
   <p class="mb-4">今日の気分は {rate}点です</p>
   <Slider class="mb-4 block" min="1" max="100" bind:value={rate} />
   <TextField
@@ -58,7 +58,7 @@
   {/if}
   <label
     for="file-input"
-    class="bg-primary-900 text-white-900 px-4 py-3 rounded mb-6 inline-block"
+    class="bg-primary-900 text-white-900 px-4 py-3 rounded mb-6 inline-block  dark:bg-accent-300"
     >画像を選択</label
   >
   <input
@@ -70,6 +70,8 @@
     on:change={(e) => onFileSelect(e)}
   />
   <div class="py-2">
-    <Button type="submit" class="text-white-900">日記を保存</Button>
+    <Button type="submit" class="text-white-900 dark:bg-accent-200"
+      >日記を保存</Button
+    >
   </div>
 </form>
